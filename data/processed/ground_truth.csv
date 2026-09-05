@@ -1,0 +1,122 @@
+unified_transaction_id,order_id,scenario_type,expected_rule_engine_outcome,expected_exception_type,expected_final_status,notes
+UNI_TXN_1001_BNK_UTR_5001,ORD_1001,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1002_BNK_UTR_5002,ORD_1002,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1003_BNK_UTR_5003,ORD_1003,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1004_BNK_UTR_5004,ORD_1004,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1005_BNK_UTR_5005,ORD_1005,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1006_BNK_UTR_5006,ORD_1006,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1007_BNK_UTR_5007,ORD_1007,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1008_BNK_UTR_5008,ORD_1008,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1009_BNK_UTR_5009,ORD_1009,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1010_BNK_UTR_5010,ORD_1010,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1011_BNK_UTR_5011,ORD_1011,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1012_BNK_UTR_5012,ORD_1012,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1013_BNK_UTR_5013,ORD_1013,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1014_BNK_UTR_5014,ORD_1014,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1015_BNK_UTR_5015,ORD_1015,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1016_BNK_UTR_5016,ORD_1016,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1017_BNK_UTR_5017,ORD_1017,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1018_BNK_UTR_5018,ORD_1018,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1019_BNK_UTR_5019,ORD_1019,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1020_BNK_UTR_5020,ORD_1020,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1021_BNK_UTR_5021,ORD_1021,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1022_BNK_UTR_5022,ORD_1022,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1023_BNK_UTR_5023,ORD_1023,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1024_BNK_UTR_5024,ORD_1024,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1025_BNK_UTR_5025,ORD_1025,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1026_BNK_UTR_5026,ORD_1026,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1027_BNK_UTR_5027,ORD_1027,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1028_BNK_UTR_5028,ORD_1028,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1029_BNK_UTR_5029,ORD_1029,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1030_BNK_UTR_5030,ORD_1030,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1031_BNK_UTR_5031,ORD_1031,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1032_BNK_UTR_5032,ORD_1032,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1033_BNK_UTR_5033,ORD_1033,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1034_BNK_UTR_5034,ORD_1034,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1035_BNK_UTR_5035,ORD_1035,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1036_BNK_UTR_5036,ORD_1036,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1037_BNK_UTR_5037,ORD_1037,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1038_BNK_UTR_5038,ORD_1038,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1039_BNK_UTR_5039,ORD_1039,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1040_BNK_UTR_5040,ORD_1040,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1041_BNK_UTR_5041,ORD_1041,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1042_BNK_UTR_5042,ORD_1042,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1043_BNK_UTR_5043,ORD_1043,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1044_BNK_UTR_5044,ORD_1044,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1045_BNK_UTR_5045,ORD_1045,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1046_BNK_UTR_5046,ORD_1046,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1047_BNK_UTR_5047,ORD_1047,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1048_BNK_UTR_5048,ORD_1048,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1049_BNK_UTR_5049,ORD_1049,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1050_BNK_UTR_5050,ORD_1050,CLEAN_MATCH,MATCHED,,RECONCILED,"Ledger, gateway and bank amounts reconcile exactly."
+UNI_TXN_1051_BNK_UTR_5051,ORD_1051,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 1.500%.
+UNI_TXN_1052_BNK_UTR_5052,ORD_1052,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 3.500%.
+UNI_TXN_1053_BNK_UTR_5053,ORD_1053,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 1.500%.
+UNI_TXN_1054_BNK_UTR_5054,ORD_1054,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 3.500%.
+UNI_TXN_1055_BNK_UTR_5055,ORD_1055,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 1.500%.
+UNI_TXN_1056_BNK_UTR_5056,ORD_1056,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 3.500%.
+UNI_TXN_1057_BNK_UTR_5057,ORD_1057,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 1.500%.
+UNI_TXN_1058_BNK_UTR_5058,ORD_1058,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 3.500%.
+UNI_TXN_1059_BNK_UTR_5059,ORD_1059,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 1.500%.
+UNI_TXN_1060_BNK_UTR_5060,ORD_1060,FEE_DIFFERENCE,EXCEPTION,FEE_DIFFERENCE,UNRESOLVED,Gateway fee differs from the configured standard 2% fee. Actual fee rate: 3.500%.
+UNI_TXN_1061_BNK_UTR_5061,ORD_1061,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1062_BNK_UTR_5062,ORD_1062,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1063_BNK_UTR_5063,ORD_1063,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1064_BNK_UTR_5064,ORD_1064,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1065_BNK_UTR_5065,ORD_1065,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1066_BNK_UTR_5066,ORD_1066,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1067_BNK_UTR_5067,ORD_1067,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1068_BNK_UTR_5068,ORD_1068,TIMING_DIFFERENCE,EXCEPTION,TIMING_DIFFERENCE,UNRESOLVED,Settlement delayed beyond the configured 3-day settlement window.
+UNI_TXN_1069_BNK_UTR_5069,ORD_1069,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1070_BNK_UTR_5070,ORD_1070,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1071_BNK_UTR_5071,ORD_1071,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1072_BNK_UTR_5072,ORD_1072,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1073_BNK_UTR_5073,ORD_1073,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1074_BNK_UTR_5074,ORD_1074,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1075_BNK_UTR_5075,ORD_1075,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1076_BNK_UTR_5076,ORD_1076,AMOUNT_MISMATCH,EXCEPTION,AMOUNT_MISMATCH,UNRESOLVED,Unexplained INR 150 deduction from the expected bank settlement.
+UNI_TXN_1077_pay_G1077,ORD_1077,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,"Ledger and gateway records exist, but bank settlement is missing."
+UNI_TXN_1078_pay_G1078,ORD_1078,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,"Ledger and gateway records exist, but bank settlement is missing."
+UNI_TXN_1079_pay_G1079,ORD_1079,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,"Ledger and gateway records exist, but bank settlement is missing."
+UNI_TXN_1080_pay_G1080,ORD_1080,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,"Ledger and gateway records exist, but bank settlement is missing."
+UNI_TXN_1081_pay_G1081,ORD_1081,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,"Ledger and gateway records exist, but bank settlement is missing."
+UNI_TXN_1082_pay_G1082,ORD_1082,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,"Ledger and gateway records exist, but bank settlement is missing."
+UNI_BANK_BNK_UTR_5083,,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement exists without a corresponding ledger transaction.
+UNI_BANK_BNK_UTR_5084,,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement exists without a corresponding ledger transaction.
+UNI_BANK_BNK_UTR_5085,,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement exists without a corresponding ledger transaction.
+UNI_BANK_BNK_UTR_5086,,MISSING_RECORD,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement exists without a corresponding ledger transaction.
+UNI_TXN_1087_D0_BNK_UTR_5087,ORD_1087,DUPLICATE,MATCHED,,RECONCILED,Original ledger record in a duplicate pair.
+UNI_TXN_1087_D1_BNK_UTR_5087,ORD_1087,DUPLICATE,EXCEPTION,DUPLICATE,UNRESOLVED,Duplicate ledger pair. First record is the original; second record is the duplicate detected by the batch rule.
+UNI_TXN_1088_D0_BNK_UTR_5088,ORD_1088,DUPLICATE,MATCHED,,RECONCILED,Original ledger record in a duplicate pair.
+UNI_TXN_1088_D1_BNK_UTR_5088,ORD_1088,DUPLICATE,EXCEPTION,DUPLICATE,UNRESOLVED,Duplicate ledger pair. First record is the original; second record is the duplicate detected by the batch rule.
+UNI_TXN_1089_D0_BNK_UTR_5089,ORD_1089,DUPLICATE,MATCHED,,RECONCILED,Original ledger record in a duplicate pair.
+UNI_TXN_1089_D1_BNK_UTR_5089,ORD_1089,DUPLICATE,EXCEPTION,DUPLICATE,UNRESOLVED,Duplicate ledger pair. First record is the original; second record is the duplicate detected by the batch rule.
+UNI_TXN_1090_BNK_UTR_5090_0,ORD_1090,DUPLICATE,MATCHED,,RECONCILED,Original bank settlement in a duplicate pair.
+UNI_TXN_1090_BNK_UTR_5090_1,ORD_1090,DUPLICATE,EXCEPTION,DUPLICATE,UNRESOLVED,Duplicate bank settlement pair. First record is the original; second is the duplicate.
+UNI_TXN_1091_BNK_UTR_5091_0,ORD_1091,DUPLICATE,MATCHED,,RECONCILED,Original bank settlement in a duplicate pair.
+UNI_TXN_1091_BNK_UTR_5091_1,ORD_1091,DUPLICATE,EXCEPTION,DUPLICATE,UNRESOLVED,Duplicate bank settlement pair. First record is the original; second is the duplicate.
+UNI_TXN_1092_BNK_UTR_5092_0,ORD_1092,DUPLICATE,MATCHED,,RECONCILED,Original bank settlement in a duplicate pair.
+UNI_TXN_1092_BNK_UTR_5092_1,ORD_1092,DUPLICATE,EXCEPTION,DUPLICATE,UNRESOLVED,Duplicate bank settlement pair. First record is the original; second is the duplicate.
+UNI_TXN_1093_BNK_UTR_5093,ORD_1093,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1094_BNK_UTR_5094,ORD_1094,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1095_BNK_UTR_5095,ORD_1095,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1096_BNK_UTR_5096,ORD_1096,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1097_BNK_UTR_5097,ORD_1097,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1098_BNK_UTR_5098,ORD_1098,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1099_BNK_UTR_5099,ORD_1099,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1100_BNK_UTR_5100,ORD_1100,REFUND,EXCEPTION,REFUND,UNRESOLVED,Partial refund detected in gateway data.
+UNI_TXN_1101_BNK_UTR_5101,ORD_1101,CHARGEBACK,EXCEPTION,CHARGEBACK,UNRESOLVED,Full chargeback detected with bank dispute fee.
+UNI_TXN_1102_BNK_UTR_5102,ORD_1102,CHARGEBACK,EXCEPTION,CHARGEBACK,UNRESOLVED,Full chargeback detected with bank dispute fee.
+UNI_TXN_1103_BNK_UTR_5103,ORD_1103,CHARGEBACK,EXCEPTION,CHARGEBACK,UNRESOLVED,Full chargeback detected with bank dispute fee.
+UNI_TXN_1104_BNK_UTR_5104,ORD_1104,CHARGEBACK,EXCEPTION,CHARGEBACK,UNRESOLVED,Full chargeback detected with bank dispute fee.
+UNI_TXN_1105_BNK_UTR_5105,ORD_1105,CHARGEBACK,EXCEPTION,CHARGEBACK,UNRESOLVED,Full chargeback detected with bank dispute fee.
+UNI_TXN_1106,ORD_1106,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Ledger transaction has no matching gateway or bank settlement.
+UNI_BANK_BNK_UTR_5106,,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement has a corrupted gateway reference and no matching ledger record.
+UNI_TXN_1107,ORD_1107,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Ledger transaction has no matching gateway or bank settlement.
+UNI_BANK_BNK_UTR_5107,,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement has a corrupted gateway reference and no matching ledger record.
+UNI_TXN_1108,ORD_1108,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Ledger transaction has no matching gateway or bank settlement.
+UNI_BANK_BNK_UTR_5108,,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement has a corrupted gateway reference and no matching ledger record.
+UNI_TXN_1109,ORD_1109,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Ledger transaction has no matching gateway or bank settlement.
+UNI_BANK_BNK_UTR_5109,,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement has a corrupted gateway reference and no matching ledger record.
+UNI_TXN_1110,ORD_1110,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Ledger transaction has no matching gateway or bank settlement.
+UNI_BANK_BNK_UTR_5110,,UNRESOLVED,EXCEPTION,MISSING_RECORD,UNRESOLVED,Bank settlement has a corrupted gateway reference and no matching ledger record.

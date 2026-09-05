@@ -691,8 +691,6 @@ The system follows several principles for financial data processing:
 
 ## Buildathon Track
 
-### Razorpay AI Finance Controller
-
 **Track:** Multi-Source Reconciliation
 
 The project demonstrates an AI-powered reconciliation workflow that combines:
@@ -712,9 +710,3 @@ The core philosophy is simple:
 This allows the system to automate routine reconciliation while using Generative AI where it provides the most value — investigating complex financial exceptions.
 
 ---
-
-## Team
-
-Built for the Razorpay Buildathon.
-
-**AI Finance Controller**

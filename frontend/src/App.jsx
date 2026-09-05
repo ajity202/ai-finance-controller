@@ -25,32 +25,33 @@ function StatusBadge({ status }) {
   return (
     <span
       className={`rounded-full border px-2.5 py-1 text-xs font-medium ${
-        styles[status] || "bg-slate-500/10 text-slate-400 border-slate-500/20"
+        styles[status] ||
+        "bg-slate-500/10 text-slate-400 border-slate-500/20"
       }`}
     >
-      {status
-        ? status.replaceAll("_", " ")
-        : "UNKNOWN"}
+      {status ? status.replaceAll("_", " ") : "UNKNOWN"}
     </span>
   );
 }
 
 function StatCard({ title, value, subtitle, icon }) {
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-      <div className="flex items-start justify-between">
-        <p className="text-sm text-slate-400">{title}</p>
+    <div className="min-h-[185px] rounded-2xl border border-slate-800 bg-slate-900 p-5">
+      <div className="flex items-start gap-3">
+        <p className="min-h-[40px] flex-1 pr-2 text-sm leading-5 text-slate-400">
+          {title}
+        </p>
 
-        <span className="rounded-lg bg-slate-800 px-2.5 py-1 text-slate-300">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-sm text-slate-300">
           {icon}
         </span>
       </div>
 
-      <p className="mt-4 text-3xl font-semibold tracking-tight">
+      <p className="mt-5 text-3xl font-semibold tracking-tight">
         {value}
       </p>
 
-      <p className="mt-2 text-xs text-slate-500">
+      <p className="mt-2 text-xs leading-5 text-slate-500">
         {subtitle}
       </p>
     </div>
@@ -111,7 +112,6 @@ function getExceptionLabel(tx) {
     : "—";
 }
 
-
 /* --------------------------------------------------
    DASHBOARD
 -------------------------------------------------- */
@@ -123,38 +123,81 @@ function Dashboard({
   loading,
 }) {
   const total = summary.total || 0;
-
   const reconciled = summary.reconciled || 0;
   const resolved = summary.resolved || 0;
   const needsReview = summary.needs_review || 0;
   const unresolved = summary.unresolved || 0;
 
-  const exceptionCount =
-    needsReview + unresolved;
+  /* Automated closure */
+  const automated = reconciled + resolved;
 
+  /* All transactions requiring exception handling */
+  const exceptionCount =
+    resolved + needsReview + unresolved;
+
+  /* Automation rate */
+  const automationRate =
+    total > 0
+      ? ((automated / total) * 100).toFixed(1)
+      : "0.0";
+
+  /* Reconciliation percentage */
   const reconciledPercentage =
     total > 0
       ? ((reconciled / total) * 100).toFixed(1)
       : "0.0";
 
-  const needsReviewPercentage =
-    total > 0
-      ? ((needsReview / total) * 100).toFixed(1)
-      : "0.0";
+  /* --------------------------------------------------
+     AMOUNT-BASED KPIs
 
-  const unresolvedPercentage =
-    total > 0
-      ? ((unresolved / total) * 100).toFixed(1)
-      : "0.0";
+     These use only actual difference values returned
+     by the reconciliation backend.
+  -------------------------------------------------- */
 
-  const donutReconciled =
+  const exceptionResults = results.filter(
+    (tx) => tx.final_status !== "RECONCILED"
+  );
+
+  const exceptionDifferences = exceptionResults
+    .map((tx) => Number(tx.difference))
+    .filter(
+      (value) =>
+        !Number.isNaN(value) &&
+        Number.isFinite(value) &&
+        value !== 0
+    );
+
+  const totalExceptionVariance =
+    exceptionDifferences.reduce(
+      (sum, value) => sum + Math.abs(value),
+      0
+    );
+
+  const averageExceptionVariance =
+    exceptionDifferences.length > 0
+      ? totalExceptionVariance /
+        exceptionDifferences.length
+      : 0;
+
+  /* --------------------------------------------------
+     DONUT CHART
+  -------------------------------------------------- */
+
+  const reconciledEnd =
     total > 0
       ? (reconciled / total) * 100
       : 0;
 
-  const donutReviewEnd =
+  const resolvedEnd =
     total > 0
-      ? donutReconciled + (needsReview / total) * 100
+      ? reconciledEnd +
+        (resolved / total) * 100
+      : 0;
+
+  const reviewEnd =
+    total > 0
+      ? resolvedEnd +
+        (needsReview / total) * 100
       : 0;
 
   const recentExceptions = results
@@ -167,8 +210,11 @@ function Dashboard({
   return (
     <div className="space-y-6">
 
-      {/* KPI CARDS */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
+      {/* --------------------------------------------------
+          KPI CARDS
+      -------------------------------------------------- */}
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
         <StatCard
           title="Total Transactions"
@@ -205,13 +251,53 @@ function Dashboard({
           icon="○"
         />
 
+        <StatCard
+          title="Automation Rate"
+          value={
+            loading
+              ? "…"
+              : `${automationRate}%`
+          }
+          subtitle="Reconciled + AI resolved"
+          icon="⚡"
+        />
+
+        <StatCard
+          title="Total Exception Variance"
+          value={
+            loading
+              ? "…"
+              : formatCurrency(
+                  totalExceptionVariance
+                )
+          }
+          subtitle="Absolute financial difference"
+          icon="₹"
+        />
+
+        <StatCard
+          title="Average Exception Variance"
+          value={
+            loading
+              ? "…"
+              : formatCurrency(
+                  averageExceptionVariance
+                )
+          }
+          subtitle="Average difference per exception"
+          icon="≈"
+        />
+
       </div>
 
+      {/* --------------------------------------------------
+          OVERVIEW + AI
+      -------------------------------------------------- */}
 
-      {/* OVERVIEW + AI */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
 
         {/* RECONCILIATION OVERVIEW */}
+
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 xl:col-span-2">
 
           <div className="flex items-center justify-between">
@@ -232,8 +318,9 @@ function Dashboard({
 
           </div>
 
-
           <div className="mt-8 flex items-center gap-8">
+
+            {/* DONUT */}
 
             <div
               className="flex h-44 w-44 shrink-0 items-center justify-center rounded-full"
@@ -241,9 +328,10 @@ function Dashboard({
                 background:
                   total > 0
                     ? `conic-gradient(
-                        #10b981 0 ${donutReconciled}%,
-                        #f59e0b ${donutReconciled}% ${donutReviewEnd}%,
-                        #ef4444 ${donutReviewEnd}% 100%
+                        #10b981 0 ${reconciledEnd}%,
+                        #3b82f6 ${reconciledEnd}% ${resolvedEnd}%,
+                        #f59e0b ${resolvedEnd}% ${reviewEnd}%,
+                        #ef4444 ${reviewEnd}% 100%
                       )`
                     : "conic-gradient(#334155 0 100%)",
               }}
@@ -263,17 +351,22 @@ function Dashboard({
 
             </div>
 
+            {/* LEGEND */}
 
             <div className="flex-1 space-y-4">
+
+              {/* RECONCILED */}
 
               <div className="flex items-center justify-between">
 
                 <div className="flex items-center gap-3">
+
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
 
                   <span className="text-sm text-slate-400">
                     Reconciled
                   </span>
+
                 </div>
 
                 <span className="font-medium">
@@ -282,15 +375,38 @@ function Dashboard({
 
               </div>
 
+              {/* AI RESOLVED */}
 
               <div className="flex items-center justify-between">
 
                 <div className="flex items-center gap-3">
+
+                  <span className="h-2.5 w-2.5 rounded-full bg-blue-400" />
+
+                  <span className="text-sm text-slate-400">
+                    AI Resolved
+                  </span>
+
+                </div>
+
+                <span className="font-medium">
+                  {resolved}
+                </span>
+
+              </div>
+
+              {/* NEEDS REVIEW */}
+
+              <div className="flex items-center justify-between">
+
+                <div className="flex items-center gap-3">
+
                   <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
 
                   <span className="text-sm text-slate-400">
                     Needs Review
                   </span>
+
                 </div>
 
                 <span className="font-medium">
@@ -299,20 +415,41 @@ function Dashboard({
 
               </div>
 
+              {/* UNRESOLVED */}
 
               <div className="flex items-center justify-between">
 
                 <div className="flex items-center gap-3">
+
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
 
                   <span className="text-sm text-slate-400">
                     Unresolved
                   </span>
+
                 </div>
 
                 <span className="font-medium">
                   {unresolved}
                 </span>
+
+              </div>
+
+              {/* AUTOMATION RATE */}
+
+              <div className="mt-5 border-t border-slate-800 pt-4">
+
+                <div className="flex items-center justify-between">
+
+                  <span className="text-xs uppercase text-slate-500">
+                    Automated Closure
+                  </span>
+
+                  <span className="font-medium text-emerald-400">
+                    {automationRate}%
+                  </span>
+
+                </div>
 
               </div>
 
@@ -322,8 +459,8 @@ function Dashboard({
 
         </div>
 
-
         {/* AI AGENT */}
+
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
 
           <h2 className="font-semibold">
@@ -334,16 +471,16 @@ function Dashboard({
             Exception intelligence
           </p>
 
-
           <div className="mt-6 rounded-xl border border-blue-500/20 bg-blue-500/5 p-5">
 
             <div className="flex items-center gap-3">
 
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
                 ✦
               </div>
 
               <div>
+
                 <p className="text-sm font-medium">
                   AI Analysis Layer
                 </p>
@@ -351,17 +488,16 @@ function Dashboard({
                 <p className="text-xs text-slate-500">
                   Evidence-based investigation
                 </p>
+
               </div>
 
             </div>
 
-
             <p className="mt-5 text-sm leading-6 text-slate-400">
-              The AI agent analyzes reconciliation exceptions,
-              explains discrepancies and recommends the next
-              finance action.
+              The AI agent analyzes reconciliation
+              exceptions, explains discrepancies and
+              recommends the next finance action.
             </p>
-
 
             <div className="mt-4 rounded-lg bg-slate-950/60 p-3">
 
@@ -374,7 +510,6 @@ function Dashboard({
               </p>
 
             </div>
-
 
             <button
               onClick={() => setPage("Exceptions")}
@@ -389,13 +524,16 @@ function Dashboard({
 
       </div>
 
+      {/* --------------------------------------------------
+          RECENT EXCEPTIONS
+      -------------------------------------------------- */}
 
-      {/* RECENT EXCEPTIONS */}
       <div className="rounded-2xl border border-slate-800 bg-slate-900">
 
         <div className="flex items-center justify-between border-b border-slate-800 px-6 py-5">
 
           <div>
+
             <h2 className="font-semibold">
               Recent Exceptions
             </h2>
@@ -403,6 +541,7 @@ function Dashboard({
             <p className="mt-1 text-sm text-slate-500">
               Cases requiring attention
             </p>
+
           </div>
 
           <button
@@ -413,7 +552,6 @@ function Dashboard({
           </button>
 
         </div>
-
 
         {recentExceptions.length > 0 ? (
           <TransactionTable
@@ -430,7 +568,6 @@ function Dashboard({
     </div>
   );
 }
-
 
 /* --------------------------------------------------
    TRANSACTION TABLE
@@ -473,7 +610,6 @@ function TransactionTable({
 
         </thead>
 
-
         <tbody>
 
           {transactions.map((tx) => (
@@ -491,6 +627,7 @@ function TransactionTable({
               <td className="px-6 py-4">
 
                 <div>
+
                   <p className="font-medium">
                     {getTransactionLabel(tx)}
                   </p>
@@ -498,10 +635,10 @@ function TransactionTable({
                   <p className="mt-1 text-xs text-slate-500">
                     {tx.unified_transaction_id}
                   </p>
+
                 </div>
 
               </td>
-
 
               <td className="px-6 py-4">
 
@@ -517,19 +654,20 @@ function TransactionTable({
 
               </td>
 
-
               <td className="px-6 py-4 text-xs text-slate-400">
                 {getExceptionLabel(tx)}
               </td>
 
-
               <td className="px-6 py-4">
-                <StatusBadge status={tx.final_status} />
+                <StatusBadge
+                  status={tx.final_status}
+                />
               </td>
 
-
               <td className="px-6 py-4 text-slate-300">
-                {formatConfidence(tx.confidence_score)}
+                {formatConfidence(
+                  tx.confidence_score
+                )}
               </td>
 
             </tr>
@@ -543,7 +681,6 @@ function TransactionTable({
     </div>
   );
 }
-
 
 /* --------------------------------------------------
    RECONCILIATION
@@ -567,7 +704,9 @@ function Reconciliation({
       ).toLowerCase();
 
       const matchesSearch =
-        searchText.includes(search.toLowerCase());
+        searchText.includes(
+          search.toLowerCase()
+        );
 
       const matchesFilter =
         filter === "ALL" ||
@@ -579,7 +718,6 @@ function Reconciliation({
 
   }, [results, search, filter]);
 
-
   return (
     <div className="rounded-2xl border border-slate-800 bg-slate-900">
 
@@ -590,23 +728,26 @@ function Reconciliation({
         </h2>
 
         <p className="mt-1 text-sm text-slate-500">
-          Review every transaction processed by the controller.
+          Review every transaction processed by
+          the controller.
         </p>
-
 
         <div className="mt-5 flex flex-col gap-3 md:flex-row">
 
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) =>
+              setSearch(e.target.value)
+            }
             placeholder="Search transaction..."
             className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm outline-none focus:border-blue-500"
           />
 
-
           <select
             value={filter}
-            onChange={(e) => setFilter(e.target.value)}
+            onChange={(e) =>
+              setFilter(e.target.value)
+            }
             className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm outline-none"
           >
 
@@ -636,7 +777,6 @@ function Reconciliation({
 
       </div>
 
-
       {filtered.length > 0 ? (
 
         <TransactionTable
@@ -655,7 +795,6 @@ function Reconciliation({
     </div>
   );
 }
-
 
 /* --------------------------------------------------
    EXCEPTIONS
@@ -708,7 +847,6 @@ function Exceptions({
 
       </div>
 
-
       <div className="rounded-2xl border border-slate-800 bg-slate-900">
 
         <div className="border-b border-slate-800 p-6">
@@ -718,11 +856,11 @@ function Exceptions({
           </h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Investigate exceptions and review AI recommendations.
+            Investigate exceptions and review AI
+            recommendations.
           </p>
 
         </div>
-
 
         {exceptions.length > 0 ? (
 
@@ -745,7 +883,6 @@ function Exceptions({
   );
 }
 
-
 /* --------------------------------------------------
    ANALYTICS
 -------------------------------------------------- */
@@ -763,7 +900,10 @@ function Analytics({
       if (tx.exception_type) {
 
         const name =
-          tx.exception_type.replaceAll("_", " ");
+          tx.exception_type.replaceAll(
+            "_",
+            " "
+          );
 
         counts[name] =
           (counts[name] || 0) + 1;
@@ -777,17 +917,44 @@ function Analytics({
 
   }, [results]);
 
-
   const maxException =
     exceptionDistribution.length > 0
       ? exceptionDistribution[0][1]
       : 1;
 
+  const exceptionCount =
+    results.filter(
+      (tx) =>
+        tx.final_status !==
+        "RECONCILED"
+    ).length;
+
+  const exceptionDifferences = results
+    .filter(
+      (tx) =>
+        tx.final_status !==
+        "RECONCILED"
+    )
+    .map((tx) => Number(tx.difference))
+    .filter(
+      (value) =>
+        !Number.isNaN(value) &&
+        Number.isFinite(value) &&
+        value !== 0
+    );
+
+  const totalExceptionVariance =
+    exceptionDifferences.reduce(
+      (sum, value) =>
+        sum + Math.abs(value),
+      0
+    );
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
 
       {/* EXCEPTION DISTRIBUTION */}
+
       <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
 
         <h2 className="font-semibold">
@@ -815,14 +982,15 @@ function Analytics({
 
                   </div>
 
-
                   <div className="h-2 rounded-full bg-slate-800">
 
                     <div
                       className="h-2 rounded-full bg-blue-500"
                       style={{
                         width: `${
-                          (value / maxException) * 100
+                          (value /
+                            maxException) *
+                          100
                         }%`,
                       }}
                     />
@@ -846,8 +1014,8 @@ function Analytics({
 
       </div>
 
-
       {/* CONTROLLER PERFORMANCE */}
+
       <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
 
         <h2 className="font-semibold">
@@ -876,6 +1044,26 @@ function Analytics({
 
           </div>
 
+          <div className="rounded-xl bg-slate-950 p-5">
+
+            <p className="text-sm text-slate-500">
+              Automation Rate
+            </p>
+
+            <p className="mt-2 text-3xl font-semibold">
+
+              {summary.total > 0
+                ? `${(
+                    ((summary.reconciled +
+                      summary.resolved) /
+                      summary.total) *
+                    100
+                  ).toFixed(2)}%`
+                : "0.00%"}
+
+            </p>
+
+          </div>
 
           <div className="rounded-xl bg-slate-950 p-5">
 
@@ -889,6 +1077,31 @@ function Analytics({
 
           </div>
 
+          <div className="rounded-xl bg-slate-950 p-5">
+
+            <p className="text-sm text-slate-500">
+              Exceptions
+            </p>
+
+            <p className="mt-2 text-3xl font-semibold">
+              {exceptionCount}
+            </p>
+
+          </div>
+
+          <div className="rounded-xl bg-slate-950 p-5">
+
+            <p className="text-sm text-slate-500">
+              Exception Variance
+            </p>
+
+            <p className="mt-2 text-2xl font-semibold">
+              {formatCurrency(
+                totalExceptionVariance
+              )}
+            </p>
+
+          </div>
 
           <div className="rounded-xl bg-slate-950 p-5">
 
@@ -902,25 +1115,6 @@ function Analytics({
 
           </div>
 
-
-          <div className="rounded-xl bg-slate-950 p-5">
-
-            <p className="text-sm text-slate-500">
-              Exceptions
-            </p>
-
-            <p className="mt-2 text-3xl font-semibold">
-
-              {results.filter(
-                (tx) =>
-                  tx.final_status !==
-                  "RECONCILED"
-              ).length}
-
-            </p>
-
-          </div>
-
         </div>
 
       </div>
@@ -928,7 +1122,6 @@ function Analytics({
     </div>
   );
 }
-
 
 /* --------------------------------------------------
    AUDIT LOG
@@ -980,7 +1173,6 @@ function AuditLog({
 
       </div>
 
-
       <div className="divide-y divide-slate-800">
 
         {events.map(
@@ -1018,7 +1210,6 @@ function AuditLog({
   );
 }
 
-
 /* --------------------------------------------------
    TRANSACTION DETAIL
 -------------------------------------------------- */
@@ -1037,6 +1228,7 @@ function TransactionDetail({
       <div className="h-full w-full max-w-xl overflow-y-auto border-l border-slate-800 bg-slate-950 p-6">
 
         {/* HEADER */}
+
         <div className="flex items-center justify-between">
 
           <div>
@@ -1055,7 +1247,6 @@ function TransactionDetail({
 
           </div>
 
-
           <button
             onClick={close}
             className="rounded-lg bg-slate-800 px-3 py-2 text-slate-300 hover:bg-slate-700"
@@ -1065,8 +1256,8 @@ function TransactionDetail({
 
         </div>
 
-
         {/* STATUS */}
+
         <div className="mt-6 flex items-center justify-between">
 
           <span className="text-sm text-slate-400">
@@ -1079,8 +1270,8 @@ function TransactionDetail({
 
         </div>
 
-
         {/* FINANCIAL DIFFERENCE */}
+
         <div className="mt-6 rounded-xl border border-slate-800 bg-slate-900 p-5">
 
           <p className="text-xs text-slate-500">
@@ -1089,18 +1280,22 @@ function TransactionDetail({
 
           <p
             className={`mt-3 text-2xl font-semibold ${
-              Number(transaction.difference || 0) === 0
+              Number(
+                transaction.difference || 0
+              ) === 0
                 ? "text-emerald-400"
                 : "text-red-400"
             }`}
           >
-            {formatDifference(transaction.difference)}
+            {formatDifference(
+              transaction.difference
+            )}
           </p>
 
         </div>
 
-
         {/* EXCEPTION */}
+
         <div className="mt-4 rounded-xl border border-slate-800 bg-slate-900 p-5">
 
           <p className="text-xs text-slate-500">
@@ -1113,8 +1308,8 @@ function TransactionDetail({
 
         </div>
 
-
         {/* AI ANALYSIS */}
+
         <div className="mt-4 rounded-xl border border-blue-500/20 bg-blue-500/5 p-5">
 
           <div className="flex items-center gap-2">
@@ -1129,7 +1324,6 @@ function TransactionDetail({
 
           </div>
 
-
           <div className="mt-5">
 
             <p className="text-xs text-slate-500">
@@ -1142,7 +1336,6 @@ function TransactionDetail({
             </p>
 
           </div>
-
 
           <div className="mt-5">
 
@@ -1158,7 +1351,6 @@ function TransactionDetail({
 
           </div>
 
-
           <div className="mt-5">
 
             <p className="text-xs text-slate-500">
@@ -1171,7 +1363,6 @@ function TransactionDetail({
             </p>
 
           </div>
-
 
           {transaction.resolution && (
             <div className="mt-5">
@@ -1186,7 +1377,6 @@ function TransactionDetail({
 
             </div>
           )}
-
 
           <div className="mt-5">
 
@@ -1210,8 +1400,8 @@ function TransactionDetail({
 
         </div>
 
-
         {/* ACTIONS */}
+
         <div className="mt-6 flex gap-3">
 
           <button
@@ -1234,13 +1424,11 @@ function TransactionDetail({
   );
 }
 
-
 /* --------------------------------------------------
    APP
 -------------------------------------------------- */
 
 function App() {
-
   const [page, setPage] =
     useState("Dashboard");
 
@@ -1265,15 +1453,12 @@ function App() {
   const [apiError, setApiError] =
     useState(null);
 
-
   /* --------------------------------------------------
      LOAD API DATA
   -------------------------------------------------- */
 
   const loadDashboardData = async () => {
-
     try {
-
       setLoading(true);
       setApiError(null);
 
@@ -1281,17 +1466,13 @@ function App() {
         summaryResponse,
         resultsResponse,
       ] = await Promise.all([
-
         fetch(
           `${API_BASE_URL}/summary`
         ),
-
         fetch(
           `${API_BASE_URL}/results`
         ),
-
       ]);
-
 
       if (
         !summaryResponse.ok ||
@@ -1302,13 +1483,11 @@ function App() {
         );
       }
 
-
       const summaryData =
         await summaryResponse.json();
 
       const resultsData =
         await resultsResponse.json();
-
 
       setSummary({
         total: summaryData.total || 0,
@@ -1322,7 +1501,6 @@ function App() {
           summaryData.unresolved || 0,
       });
 
-
       setResults(
         Array.isArray(resultsData)
           ? resultsData
@@ -1330,7 +1508,6 @@ function App() {
       );
 
     } catch (error) {
-
       console.error(
         "API Error:",
         error
@@ -1342,13 +1519,9 @@ function App() {
       );
 
     } finally {
-
       setLoading(false);
-
     }
-
   };
-
 
   /* --------------------------------------------------
      INITIAL LOAD
@@ -1358,17 +1531,14 @@ function App() {
     loadDashboardData();
   }, []);
 
-
   /* --------------------------------------------------
      PAGE RENDER
   -------------------------------------------------- */
 
   const renderPage = () => {
-
     switch (page) {
 
       case "Reconciliation":
-
         return (
           <Reconciliation
             results={results}
@@ -1376,9 +1546,7 @@ function App() {
           />
         );
 
-
       case "Exceptions":
-
         return (
           <Exceptions
             results={results}
@@ -1386,9 +1554,7 @@ function App() {
           />
         );
 
-
       case "Analytics":
-
         return (
           <Analytics
             results={results}
@@ -1396,18 +1562,14 @@ function App() {
           />
         );
 
-
       case "Audit Log":
-
         return (
           <AuditLog
             summary={summary}
           />
         );
 
-
       default:
-
         return (
           <Dashboard
             summary={summary}
@@ -1416,18 +1578,13 @@ function App() {
             loading={loading}
           />
         );
-
     }
-
   };
-
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
 
-      {/* --------------------------------------------------
-          SIDEBAR
-      -------------------------------------------------- */}
+      {/* SIDEBAR */}
 
       <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 border-r border-slate-800 bg-slate-900 lg:block">
 
@@ -1447,7 +1604,6 @@ function App() {
 
         </div>
 
-
         <nav className="px-4">
 
           {navItems.map((item) => (
@@ -1464,7 +1620,7 @@ function App() {
               }`}
             >
 
-              <span className="w-5 text-center">
+              <span className="flex w-5 items-center justify-center text-center">
                 {item.icon}
               </span>
 
@@ -1475,7 +1631,6 @@ function App() {
           ))}
 
         </nav>
-
 
         <div className="absolute bottom-6 left-5 right-5 rounded-xl border border-slate-800 bg-slate-950 p-4">
 
@@ -1503,15 +1658,12 @@ function App() {
 
       </aside>
 
-
-      {/* --------------------------------------------------
-          MAIN
-      -------------------------------------------------- */}
+      {/* MAIN */}
 
       <main className="lg:ml-64">
 
-
         {/* HEADER */}
+
         <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-800 bg-slate-950/90 px-6 py-5 backdrop-blur md:px-8">
 
           <div>
@@ -1526,7 +1678,6 @@ function App() {
 
           </div>
 
-
           <button
             disabled
             title="Temporarily disabled while Gemini quota is being managed"
@@ -1537,10 +1688,7 @@ function App() {
 
         </header>
 
-
-        {/* --------------------------------------------------
-            API ERROR
-        -------------------------------------------------- */}
+        {/* API ERROR */}
 
         {apiError && (
 
@@ -1560,7 +1708,6 @@ function App() {
 
               </div>
 
-
               <button
                 onClick={loadDashboardData}
                 className="rounded-lg border border-slate-700 px-4 py-2 text-xs hover:bg-slate-800"
@@ -1574,8 +1721,8 @@ function App() {
 
         )}
 
-
         {/* MOBILE NAV */}
+
         <div className="flex gap-2 overflow-x-auto border-b border-slate-800 bg-slate-900 px-4 py-3 lg:hidden">
 
           {navItems.map((item) => (
@@ -1598,8 +1745,8 @@ function App() {
 
         </div>
 
-
         {/* CONTENT */}
+
         <section className="p-5 md:p-8">
 
           {loading ? (
@@ -1627,7 +1774,6 @@ function App() {
         </section>
 
       </main>
-
 
       {/* TRANSACTION DETAIL */}
 

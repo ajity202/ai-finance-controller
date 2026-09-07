@@ -227,10 +227,6 @@ A future ML layer could learn from historical outcomes, confirmed resolutions, a
 
 ---
 
-## Buildathon Track
-
-Built for the **Razorpay Buildathon — Multi-Source Reconciliation track**, demonstrating multi-source financial data ingestion, deterministic reconciliation, Gemini-powered exception investigation, and explainable, auditable decisions.
-
 > **Rules first. AI second. Human review when necessary.**
 
 **Team:** AI Finance Controller
